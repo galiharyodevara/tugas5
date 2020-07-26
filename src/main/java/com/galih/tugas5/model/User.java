@@ -7,13 +7,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class User {
     @Id
     private String id;
-    private String username,password,role,name,email;
-    private Boolean active;
+    private String username, password, role, name, email;
+    private boolean active;
+
+    private UserDetail userDetail;
 
     public User() {
     }
 
-    public User(String id, String username, String password, String role, String name, String email, Boolean active) {
+    public User(String id, String username, String password, String role, String name, String email, boolean active, UserDetail userDetail) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -21,6 +23,7 @@ public class User {
         this.name = name;
         this.email = email;
         this.active = active;
+        this.userDetail = userDetail;
     }
 
     public String getId() {
@@ -71,11 +74,19 @@ public class User {
         this.email = email;
     }
 
-    public Boolean getActive() {
+    public boolean isActive() {
         return active;
     }
 
-    public void setActive(Boolean active) {
+    public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public UserDetail getUserDetail() {
+        return userDetail;
+    }
+
+    public void setUserDetail(UserDetail userDetail) {
+        this.userDetail = userDetail;
     }
 }

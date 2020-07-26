@@ -22,14 +22,14 @@ public class UserController {
     public List<User> getAllUser(@RequestParam(value ="pageNo", defaultValue = "0") Integer pageNo,
                                  @RequestParam(value = "sortKey", defaultValue = "name") String sortKey)
     {
-        return service.getAllUser(pageNo, sortKey);
+        return service.getAllUser();
     }
 
 
     @DeleteMapping("/delete")
-    Map<String, Object> deleteById(@RequestParam int id) {
+    Map<String, Object> deleteById(@RequestParam String id) {
         Map<String, Object> result = new HashMap<>();
-        if (service.deleteByUserId(id)) {
+        if (service.deleteUser(id)) {
             result.put("success", true);
         } else {
             result.put("success", false);
@@ -37,21 +37,23 @@ public class UserController {
         }
         return result;
     }
-    @PutMapping("/update")
-    Map<String, Object> UpdateUser(@RequestBody User body){
-        Map<String, Object> result = new HashMap<>();
-        if (service.updateUser(body)) {
-            result.put("success", true);
-            result.put("mes", "berhasil");
-        }else {
-            result.put("success", false);
-            result.put("mes", "gagal");
-        }
-        return result;
-    }
+
+//    @PutMapping("/update")
+//    Map<String, Object> UpdateUser(@RequestBody User body){
+//        Map<String, Object> result = new HashMap<>();
+//        if (service.updateUser()) {
+//            result.put("success", true);
+//            result.put("mes", "berhasil");
+//        }else {
+//            result.put("success", false);
+//            result.put("mes", "gagal");
+//        }
+//        return result;
+//    }
+
     @PostMapping("/insert")
     public Map<String, Object> insert(@RequestBody User user) {
-        return service.insert(user);
+        return service.insertNewUser(user);
     }
 
 }
